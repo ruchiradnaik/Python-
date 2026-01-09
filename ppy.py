@@ -1,0 +1,40 @@
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Insufficient balance")
+        self.balance -= amount   
+
+    def deposit(self, amount):
+        self.balance += amount
+
+
+def transfer_money(sender, receiver, amount):
+    sender.withdraw(amount)
+    receiver.deposit(amount)
+
+
+accounts = [
+    BankAccount("Alice", 5000),
+    BankAccount("Bob", 3000)
+]
+
+# Find account by name
+def get_account(name):
+    for acc in accounts:
+        if acc.name == name:
+            return acc
+    return None
+
+
+sender = get_account("Alice")
+receiver = get_account("Charlie")  
+
+transfer_money(sender, receiver, 7000)  
+
+print("Transfer complete")
+print("Sender balance:", sender.balance)
+print("Receiver balance:", receiver.balance)
