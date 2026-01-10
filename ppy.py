@@ -37,7 +37,11 @@ def get_account(name):
 sender = get_account("Alice")
 receiver = get_account("Charlie")  
 
-transfer_money(sender, receiver, 7000)  
+# Check if receiver is valid before attempting to transfer money
+if receiver is not None:
+    transfer_money(sender, receiver, 7000)  
+else:
+    print("Transfer failed: Receiver account not found.")
 
 print("Transfer complete")
 print("Sender balance:", sender.balance)
